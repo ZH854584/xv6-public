@@ -6,6 +6,7 @@
 #include "memlayout.h"
 #include "mmu.h"
 #include "proc.h"
+#include "counter.h"
 
 int
 sys_fork(void)
@@ -17,7 +18,7 @@ int
 sys_exit(void)
 {
   exit();
-  return 0;  // not reached
+  return 1;  // not reached
 }
 
 int
@@ -89,9 +90,17 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
 int
 sys_wcupa(void)
 {
   return 1871;
 }
+
+int
+sys_countrd(void)
+{
+  return rdcount;
+}
+
 
